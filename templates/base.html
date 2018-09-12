@@ -6,9 +6,9 @@
 
 	<head>
 
-	    <meta charset="utf-8">
+			<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
 	    <title>Ehouse - Aluguel de imóveis</title>
 
 	    <!-- Core CSS - Include with every page -->
@@ -16,38 +16,23 @@
 	</head>
 
 	<body>
-
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="nav navbar-nav">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	      </button>
-				<li><a class="navbar-brand" href="#">Ehouse - Aluguel de imóveis</a></li>
-	    </div>
-
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav navbar-right">
-	        
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Minha conta <span class="caret"></span></a>
-	          <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Início</a></li>
-							<li class="divider"></li>
-	            <li><a href="#">Ação I</a></li>
-	            <li><a href="#">Ação II</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">Ação III</a></li>
-	            <li class="divider"></li>
-	            <li><a href="/logout">Sair</a></li>
-	          </ul>
-	        </li>
-
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
+			<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#">Ehouse - Aluguel de imóveis</a>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Início</a></li>
+							<li><a href="#">Buscar</a></li>
+							<li><a href="#">Meus anúncios</a></li>
+						</ul>
+						<button class="btn btn-danger navbar-btn">Inserir anúncio</button>
+						<ul class="nav navbar-nav navbar-right">
+								<li><a href="{% url 'cadastro' %}"><span class="glyphicon glyphicon-user"></span> Inscreva-se</a></li>
+								<li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							</ul>
+					</div>
+				</nav>
 
 	            {% block content %}
 	            {% endblock %}
