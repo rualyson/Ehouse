@@ -1,0 +1,52 @@
+
+{% block content %}
+
+<div id="login-page" class="row">
+    <div class="col s12 z-depth-4 card-panel">
+      <form class="login-form" action ="{% url 'cadastro' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="input-field col s12 center">
+            <h4>Cadastrar</h4>
+          </div>
+        </div>
+        <div class="row"style="margin-bottom: 0;">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">account_box</i>
+            {{form.username}}
+            <label for="username" class="center-align">Username</label>
+          </div>
+        </div>
+        <div class="row"style="margin-bottom: 0;">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+            {{form.email}}
+            <label for="email" class="center-align">Email</label>
+          </div>
+        </div>
+        <div class="row"style="margin-bottom: 0;">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">contacts</i>
+            {{form.first_name}}
+            <label for="nome">Nome</label>
+          </div>
+        </div>
+        <div class="row"style="margin-bottom: 0;">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock</i>
+              {{form.password}}
+              <label for="password">Password</label>
+            </div>
+          </div>
+        <div class="row">
+          <div class="input-field col s12">
+              <button class="btn waves-effect waves-light col s12" type="submit">Registrar</button>
+          </div>
+          <div class="input-field col s12">
+            <p class="margin center medium-small sign-up">já tem uma conta? <a href="{% url 'login' %}">Login</a></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endblock %}
