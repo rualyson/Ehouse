@@ -23,3 +23,7 @@ def cadastro(request):
             form.save()
             return HttpResponseRedirect('/login/')
     return render(request,'cadastro.html',{'form':form})
+
+   
+def anuncios(request):
+	return render(request,"anuncios.html")
