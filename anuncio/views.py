@@ -12,23 +12,10 @@ def meus_anuncios(request):
 
 @login_required
 def novo_anuncio(request):
+    form = AnuncioForm(request.POST or None)
     if request.method == 'POST':
-        form = AnuncioForm(request.POST or None)
         if form.is_valid():
             form.save()
             return redirect('meus_anuncios')
-    else:
-        form = AnuncioForm(ModelForm)
 
     return render(request, 'novo_anuncio.html', {'form': form})
-
-    # if request.method == 'POST':
-    #     form = AnuncioForm(request.POST or None)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('/meus_anuncios/')
-    # else:
-    #     form = AnuncioForm(ModelForm)
-    # context_dict = {'form': form}
-    # return render(request, 'novo_anuncio.html', {'form': form})
-
