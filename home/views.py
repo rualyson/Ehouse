@@ -5,6 +5,13 @@ from django.http import HttpResponseRedirect
 
 
 @login_required(login_url="/accounts/login")
-
 def home(request):
-	return render(request,"home.html")
+	return render(request,"inicio.html")
+
+@login_required(login_url="/accounts/login")
+def minhaconta(request):
+	return render(request,"minhaconta.html")
+
+@login_required(login_url="/accounts/login")
+def buscar(request):
+	return render(request,"buscar.html")
