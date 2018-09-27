@@ -10,30 +10,24 @@
 {% else %}
 
 <div class="login-form">
-	<form method="POST">
-		{% csrf_token %}
+	<form method="post">
 		<div class="avatar">
                 <img src="{% static 'img/avatar.png' %}" alt="Avatar">
-            </div>
+           </div>
 		<h2 class="text-center">Cadastre-se</h2>   
-		<div class="form-group">
-			{{ form.username }}
-		</div> 
-		<div class="form-group">
-			{{ form.first_name }}
-		</div> 
-		<div class="form-group">
-			{{ form.last_name }}
-		</div> 
-		<div class="form-group">
-			{{ form.email }}
-		</div>
-		<div class="form-group">
-			{{ form.password1 }}
-		</div>
-		<div class="form-group">
-			{{ form.password2 }}
-		</div>  
+        {% csrf_token %}
+        {% for field in form %}
+          <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% if field.help_text %}
+              <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+              <p style="color: red">{{ error }}</p>
+            {% endfor %}
+          </p>
+        {% endfor %}
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Cadastrar</button>
 		</div>
