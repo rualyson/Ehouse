@@ -1,12 +1,7 @@
-from django.urls import path
-from .views import home, my_logout
+from django.urls import include, path
+from . import views
 
-
-
+# We are adding a URL called /home
 urlpatterns = [
-    path('', home, name="home"),
-    path('logout/', my_logout, name="logout"),
-
-
+    path('', views.home, name='home'),
 ]
-
