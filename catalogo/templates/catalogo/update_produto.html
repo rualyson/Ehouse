@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container">
+     <h1>Nova postagem</h1>
+
+    <form method="POST" class="post-form">
+    	{% csrf_token %}
+        <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-md-5">
+            {{ form  }}
+        </div>
+        </div>
+
+        <br>
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+
+nieto
+
+	{% endblock %}
+
+
+{% block content %}
+<br>
+<ul >
+
+     <div class="row">
+     {% for produto in products %}
+
+        <div class="card" style="width: 18rem;">
+         <img class="card-img-top" src="https://www.plantapronta.com.br/projetos/115/01.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Anúncio: {{ produto.name}}</h5>
+            <p class="card-text">Tipo: {{ produto.category}}</p>
+               <p class="card-text">Descrição: {{ produto.description}}</p>
+               <p class="card-text">Preço: R${{ produto.price}}</p>
+            <a href="{%url 'update_produto' produto.id %}" class="btn btn-primary">Editar</a>
+            <a href="{%url 'product_delete' produto.id %}" class="btn btn-danger">Deletar</a>
+            <a href="#" class="btn btn-light">Detalhes</a>
+
+          </div>
+        </div>
+
+     {% endfor %}
+     </div>
+
+ </ul>
+
+
+{% endblock %}
