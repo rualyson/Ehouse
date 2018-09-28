@@ -24,23 +24,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'buscar' %}">Buscar</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'meus_anuncios' %}">Meus Anúncios</a>
-                </li>
                 <form class="form-inline">
                     <button class="btn btn-outline-success" type="button">Inserir Anúncio</button>
                 </form>
             </ul>
-            <div class="btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Olá,{{request.user}}
-                    </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="{% url 'minhaconta' %}">Minha conta</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="/accounts/logout/">Sair</a>
-                        </div>
-                      </div>
         </div>
     </nav>    
     {% else %}

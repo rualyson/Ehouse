@@ -4,12 +4,9 @@
 <head>
 	<title>Ehouse - Aluguel de Imóveis</title>
 
-	<!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
-
+	{% load static %}
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+    
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -22,6 +19,8 @@
     
     {% block content %}
 
+    {% if user.is_authenticated %}
+
 
     <!-- Page Content -->
     <div class="container">
@@ -30,11 +29,11 @@
 
         <div class="col-lg-3">
 
-          <h1 class="my-4">Shop Name</h1>
+          <h4 class="my-4">Bem-vindo(a), {{request.user}}!</h4>
           <div class="list-group">
-            <a href="#" class="list-group-item">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
+            <a href="{% url 'meus_anuncios' %}" class="list-group-item">Meus Anúncios</a>
+            <a href="#" class="list-group-item">Minha Conta</a>
+            <a href="/accounts/logout/" class="list-group-item">Sair</a>
           </div>
 
         </div>
@@ -50,13 +49,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
-                <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+                <img class="d-block img-fluid" src="http://enjoy-homebiz.com/wp-content/uploads/2018/05/a.png" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+                <img class="d-block img-fluid" src="http://habitatsrq.org/wp-content/uploads/2018/03/The-House-the-Community-Built-.jpg" alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+                <img class="d-block img-fluid" src="https://www.lendinghq.com/wp-content/grand-media/image/SouthSide-GreenvilleSC-17-Featured.jpg" alt="Third slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -73,13 +72,13 @@
 
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="https://www.dicascasa.com/wp-content/uploads/2014/09/casas-de-madeira-01.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item One</a>
+                    <a href="#">Casa de Campo</a>
                   </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <h5>R$ 1200.00</h5>
+                  <p class="card-text">Ótima localização, 5km do centro da cidade!</p>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -89,13 +88,13 @@
 
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="https://i.pinimg.com/originals/ee/ec/ff/eeecff2caf7752b9e99838af8933f23a.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item Two</a>
+                    <a href="#">Casa de Vidro</a>
                   </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                  <h5>R$ 1500.00</h5>
+                  <p class="card-text">Perfeita para quem gosta do moderno, venha conhecer!</p>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -105,13 +104,13 @@
 
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="http://escolaesoterica.com.br/website/wp-content/uploads/bloghome11.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item Three</a>
+                    <a href="#">Casa Estilo Inglaterra</a>
                   </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <h5>R$ 1000.00</h5>
+                  <p class="card-text">Você irá se sentir em um perfeito seriado inglês!</p>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -121,13 +120,13 @@
 
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="https://i.pinimg.com/originals/e2/a1/39/e2a13935ff7e494f95b5907374f3b43f.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item Four</a>
+                    <a href="#">Casa Moderna</a>
                   </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <h5>R$ 2000.00</h5>
+                  <p class="card-text">Casa com piscina, perfeita para quem quer espaço!</p>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -137,13 +136,13 @@
 
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="https://livreforum.com/wp-content/uploads/2018/08/modelos-casas-modernas-of-modelos-casas-modernas-50.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item Five</a>
+                    <a href="#">Casa Pequena</a>
                   </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                  <h5>R$ 800.00</h5>
+                  <p class="card-text">Pequena, mas sem perder o charme. Perfeita para quem quer uma casa bonita e sem muito espaço!</p>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -153,13 +152,13 @@
 
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="http://www.hp-casas.com/wp-content/uploads/2017/06/3.1-700x400.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item Six</a>
+                    <a href="#">Casa de Condomínio</a>
                   </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <h5>R$ 950.00</h5>
+                  <p class="card-text">Venha conhecer!</p>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -179,10 +178,81 @@
     </div>
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Ehouse - Projeto Avançado I</p>
       </div>
     </footer>
-            
+    
+    {% else %}
+
+    <div class="container">
+      <header class="jumbotron my-4">
+        <h1 class="display-3">EHouse</h1>
+        <p class="lead">O melhor lugar para anunciar o seu imóvel!</p>
+        <a href="{% url 'cadastro' %}" class="btn btn-primary btn-lg">Venha conhecer!</a>
+      </header>
+      <div class="row text-center">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="https://www.dicascasa.com/wp-content/uploads/2014/09/casas-de-madeira-01.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Casa de Campo</h4>
+              <p class="card-text">Ótima localização, 5km do centro da cidade!</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Ver mais!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="https://i.pinimg.com/originals/ee/ec/ff/eeecff2caf7752b9e99838af8933f23a.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Casa de Vidro</h4>
+              <p class="card-text">Perfeita para quem gosta do moderno, venha conhecer!</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Ver mais!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://escolaesoterica.com.br/website/wp-content/uploads/bloghome11.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Casa Estilo Inglaterra</h4>
+              <p class="card-text">Você irá se sentir em um perfeito seriado inglês!</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Ver mais!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="https://i.pinimg.com/originals/e2/a1/39/e2a13935ff7e494f95b5907374f3b43f.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Casa Moderna</h4>
+              <p class="card-text">Casa com piscina, perfeita para quem quer espaço!</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Ver mais!</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; Ehouse - Projeto Avançado I</p>
+        </div>
+      </footer>
+  {% endif %}
 	{% endblock %}
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
