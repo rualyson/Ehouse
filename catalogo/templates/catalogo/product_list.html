@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+
+nieto
+
+	{% endblock %}
+
+
+{% block content %}
+<ul >
+
+     <div class="row">
+     {% for produto in products %}
+
+        <div class="card" style="width: 18rem;">
+         <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ produto.name}}</h5>
+            <p class="card-text">{{ produto.category}}</p>
+               <p class="card-text">{{ produto.description}}</p>
+               <p class="card-text">{{ produto.price}}</p>
+            <a href="{%url 'product_delete' produto.id %}" class="btn btn-primary">Delete</a>
+            <a href="{%url 'update_produto' produto.id %}" class="btn btn-primary">Edit</a>
+          </div>
+        </div>
+
+     {% endfor %}
+     </div>
+
+ </ul>
+
+
+{% endblock %}

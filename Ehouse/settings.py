@@ -18,6 +18,8 @@ INSTALLED_APPS = [
     'accounts',
     'home',
     'anuncio',
+    'catalogo',
+    'widget_tweaks',
 
 ]
 
