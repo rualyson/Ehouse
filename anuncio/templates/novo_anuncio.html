@@ -4,7 +4,9 @@
 
 {% block content %}
 
-    <form method="POST" enctype="multipart/form-data">
+        <div class="login-form">
+            <form method="post">
+                <h2 class="text-center">Novo anúncio</h2>
     {% csrf_token%}
         <center>
             <table>
@@ -21,7 +23,7 @@
                     <td>{{form.cep}}</td>            
                 </tr>
                 <tr>
-                    <td>Descrição do imóvel:</td>
+                    <td>Descrição:</td>
                     <td>{{form.descricao}}</td>            
                 </tr>                
                 <tr>

@@ -19,7 +19,9 @@ def product_new(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            return redirect('product_list')
     return render(request, 'catalogo/novo_anuncio.html', {'form': form})
+
 
 
 def product_delete(request, id):
