@@ -19,7 +19,6 @@ INSTALLED_APPS = [
     'home',
     'anuncio',
     'catalogo',
-    'widget_tweaks',
 
 ]
 

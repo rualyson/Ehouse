@@ -9,5 +9,4 @@ urlpatterns = [
     path('meus_anuncios/', include('anuncio.urls')),
     path('catalogo/', include('catalogo.urls')),
 
-
 ]

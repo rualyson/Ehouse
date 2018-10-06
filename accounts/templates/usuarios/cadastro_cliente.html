@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+
+    <div class="login-form">
+      <form method="POST">
+        <h2 class="text-center">Complete seu cadastro:</h2>
+        
+        {% csrf_token %} 
+        Username:
+        {{ user.username }}<br>
+        Nome:<br>
+        {{ form.nome }}<br>
+        Idade:<br>
+        {{ form.idade }}<br>
+        CPF:<br>
+        {{ form.cpf }}<br>
+        Cidade:<br>
+        {{ form.cidade }} <br>       
+        CEP:<br>
+        {{ form.cep }}<br>
+        <br>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Cadastrar</button>
+        </div>
+        </form>        
+    </div>
+    {% else %}
+        <center>
+            Você precisa se cadastrar para ter acesso a essa página!
+        </center>    
+    {% endif %}
+
+         
+</body>
+</html>
+{% endblock %}
+
+
+

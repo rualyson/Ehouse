@@ -32,7 +32,7 @@
           <h4 class="my-4">Bem-vindo(a), {{request.user}}!</h4>
           <div class="list-group">
             <a href="{% url 'product_list' %}" class="list-group-item">Anúncios</a>
-            <a href="#" class="list-group-item">Minha Conta</a>
+            <a href="{% url 'minhaconta' %}" class="list-group-item">Minha Conta</a>
             <a href="/accounts/logout/" class="list-group-item">Sair</a>
           </div>
 
@@ -187,7 +187,7 @@
     <div class="container">
       <header class="jumbotron my-4">
         <h1 class="display-3">EHouse</h1>
-        <p class="lead">O melhor lugar para anunciar o seu imóvel!</p>
+        <p class="lead">Tá pensando em alugar seu imóvel? Aqui é o melhor lugar!</p>
         <a href="{% url 'cadastro' %}" class="btn btn-primary btn-lg">Venha conhecer!</a>
       </header>
       <div class="row text-center">

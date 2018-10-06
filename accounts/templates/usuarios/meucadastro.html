@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<br>
+<ul>    
+
+    <div class="row">
+        
+        {% for cliente in clientes %}
+
+        <div class="login-form" style="width: 18rem;">
+            
+            <div class="card-body">
+                
+                <h5 class="card-title">Nome: {{ cliente.nome }}</h5>
+                <p class="card-text">Idade: {{ cliente.idade }} anos</p>
+                <p class="card-text">CPF: {{ cliente.cpf }}</p>
+                <p class="card-text">Cidade: {{ cliente.cidade }}</p>
+                <p class="card-text">CEP: {{ cliente.cep }}</p>
+                <p class="card-text">Email: {{ user.email }}</p>
+                <p class="card-text">ID: {{ cliente.id }}</p>
+                <p class="card-text">USERID: {{ user.id }}</p>
+                
+                <a href="#" class="btn btn-primary">Editar</a>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</ul>
+
+
+{% endblock %}
