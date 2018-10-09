@@ -67,3 +67,16 @@ class CadastroCliente (forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ['nome', 'idade', 'cpf', 'cidade', 'cep']
+
+    def save (self, commit = True):
+        cliente = super(CadastroCliente, self).save(commit=False)
+        cliente.cpf = self.cleaned_data['cpf']
+        if commit:
+            cliente.save()
+        return cliente 
+    
+    def clean_cpf(self):
+        cpf = self.cleaned_data['cpf']
+        if Cliente.objects.filter(cpf=cpf).exists():
+            raise forms.ValidationError('Já existe um usuário com esse CPF')
+        return cpf
