@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container-fluid" >
+    <h2>Cadastro de Anúncios!</h2>
+    
+    <div class="form">
+        <div class="form-group">                
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                {{ form.as_p}}
+            <input type="submit" value="Cadastrar" class="btn btn-success">
+            <input type="reset" value="Limpar" class="btn btn-warning">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

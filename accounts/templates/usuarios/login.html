@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+{% if form.errors %}
+<p>Seu usuário ou senha está incorreto. Por favor, tente novamente!</p>
+{% endif %}
+
+{% if user.is_authenticated %}
+	<script>
+		setTimeout(function(){window.location.href="/"},0.0);
+	</script>
+{% else %}
+
+<div class="login-form">
+	<form method="POST">
+        {% csrf_token %}
+        <div class="avatar">
+                <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+            </div>
+		<h2 class="text-center">Faça o login!</h2>   
+		<div class="form-group">
+			{{ form.username }}
+		</div>
+		<div class="form-group">
+			{{ form.password }}
+		</div>        
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button>
+		</div>
+		<div class="clearfix">
+            <a href="/accounts/cadastro/" class="pull-right">Ainda não possui uma conta?</a>
+        </div>
+        <div class="clearfix">
+            <a href="/accounts/password_reset/" class="pull-right">Esqueceu sua senha? Clique aqui!</a>
+		</div>
+	</form>
+</div>
+{% endif %}
+{% endblock %}

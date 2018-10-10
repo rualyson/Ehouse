@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+
+nieto
+
+	{% endblock %}
+
+
+{% block content %}
+<br>
+<ul >
+
+     <div class="row">
+     {% for imovel in imoveis %}
+
+        <div class="card" style="width: 18rem;">
+         <img class="card-img-top" src="https://www.plantapronta.com.br/projetos/115/01.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Anúncio: {{ imovel.titulo}}</h5>
+            <p class="card-text">Tipo: {{ imovel.categoria}}</p>
+               <p class="card-text">Descrição: {{ imovel.descricao}}</p>
+               <p class="card-text">Preço: R${{ imovel.preco}}</p>
+            <a href="{%url 'update_produto' imovel.id %}" class="btn btn-primary">Editar</a>
+            <a href="{%url 'product_delete' imovel.id %}" class="btn btn-danger">Deletar</a>
+            <a href="#" class="btn btn-info">Detalhes</a>
+
+          </div>
+        </div>
+
+     {% endfor %}
+     </div>
+
+ </ul>
+
+
+{% endblock %}
