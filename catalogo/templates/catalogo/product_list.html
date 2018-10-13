@@ -23,7 +23,9 @@ nieto
                <p class="card-text">Preço: R${{ imovel.preco}}</p>
             <a href="{%url 'update_produto' imovel.id %}" class="btn btn-primary">Editar</a>
             <a href="{%url 'product_delete' imovel.id %}" class="btn btn-danger">Deletar</a>
-            <a href="#" class="btn btn-info">Detalhes</a>
+            <a href="{%url 'detalhes_anuncio' imovel.id %}" class="btn btn-info" >Detalhes</a>
+            
+
 
           </div>
         </div>

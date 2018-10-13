@@ -40,3 +40,12 @@ def edit_delete(request, id):
 
     return render(request, 'catalogo/update_produto.html', {'form': form})
 
+@login_required(login_url="/accounts/login")
+def detalhes_anuncio(request, id):
+    
+    imovel = Imovel.objects.get(id=id)
+    form = ImovelForm(request.POST or None, instance=imovel)
+    if form.is_valid():
+        form.save()
+        return redirect('product_list')
+    return render(request, 'catalogo/detalhes_anuncio.html', {'form': form})

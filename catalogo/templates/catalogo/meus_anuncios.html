@@ -16,7 +16,7 @@
 </head>
 <body>
     <ul>
-        {% for product in produtos %}
+        {% for imovel in imoveis %}
             <li><a href="{% url 'meus_anuncios' product.slug %}"> {{ produtos.name }} </a></li>
         
         {% empty %}
