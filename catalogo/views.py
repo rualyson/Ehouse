@@ -49,3 +49,8 @@ def detalhes_anuncio(request, id):
         form.save()
         return redirect('product_list')
     return render(request, 'catalogo/detalhes_anuncio.html', {'form': form})
+
+def buscarCep(request):
+    buscar = request.POST['cep']
+    imovel = Imovel.objects.filter(cep__contains= 'buscar')
+    return render(request, 'catalogo/busca.html', {'imovel':imovel})

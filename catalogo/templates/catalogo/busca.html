@@ -1,14 +1,11 @@
 {% extends "base.html" %}
-{% load static %}
 {% block content %}
-        <form method="POST" action="buscar/">
+
+<br>
+<h4>Imoveis encontrados para este ou proximo a este CEP:</h4>
+<br>
+<ul class="list-group">
             {% csrf_token %}
-            <label>informe seu cep e encontre uma casa mais proximo de você :</label>
-            <input class="form-control" type="text" name="cep" value="" placeholder="Informe seu CEP">
-            <button class="btn btn-primary" type="submit">Buscar</button>
-        </form>
-        <br>
-        <ul class="list-group">
             {% for imovel in imoveis %}
             <li class="list-group-item">
                 <h4>Anúncio: {{imovel.titulo}}</h4>
@@ -48,4 +45,7 @@
             </li>
             {% endfor%}
         </ul>
+        <br>
+    <a class="btn btn-primary" href="/">Voltar</a>    
+
 {% endblock %}

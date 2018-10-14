@@ -12,5 +12,5 @@ def minhaconta(request):
 	return render(request,"minhaconta.html")
 
 @login_required(login_url="/accounts/login")
-def buscar(request):
-	return render(request,"buscar.html")
+def buscarInicio(request):
+	return render(request,"buscarInicio.html")
