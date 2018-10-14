@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify
+
 class Category(models.Model):
 
     name = models.CharField('Nome', max_length=100)
@@ -37,7 +39,7 @@ class Imovel(models.Model):
     categoria = models.ForeignKey(Category, related_name='imoveis', on_delete='models.CASCADE')
     titulo = models.CharField('Título do anúncio', max_length=100, null=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
-    imagem = models.ImageField(upload_to='catalogo/images', blank=False)
+    imagem = models.ImageField(upload_to='catalogo/imagens/anuncios',  default='imagens/no-image.png', verbose_name='Imagem')
     descricao = models.TextField(blank=True)
     dono = models.TextField(blank=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2, db_index=True)
@@ -52,7 +54,25 @@ class Imovel(models.Model):
     data_cadastramento = models.DateTimeField(auto_now_add=True)
     data_atualizacao = models.DateTimeField(auto_now=True)
 
+    def _get_unique_slug(self):
+        slug = slugify(self.titulo)
+        unique_slug = slug
+        num = 1
+        while Imovel.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        super().save(*args, **kwargs)
+
     class Meta:
         ordering = ['cidade']
         verbose_name = 'imovel'
         verbose_name_plural = 'imoveis'
+     
+    def __str__(self):
+        return self.titulo
+
+    
