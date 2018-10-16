@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load pagination %}
 {% load static %}
 {% block content %}
         <form method="POST" action="buscar/">
@@ -52,5 +53,6 @@
                 </div>
             </li>
             {% endfor%}
-        </ul>
+            </ul>
+{% pagination request paginator page_obj %}
 {% endblock %}
