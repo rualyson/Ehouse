@@ -37,5 +37,5 @@ def edit_delete(request, id):
         form.save()
         return redirect('product_list')
 
-    return render(request, 'catalogo/update_produto.html', {'form': form})
+    return render(request, 'catalogo/update_produto.html', {'form': form}) 
 

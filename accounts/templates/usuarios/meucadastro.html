@@ -4,35 +4,36 @@
 
 {% block content %}
 <br>
-<ul>    
+   
+<div class="row">
 
-    <div class="row">
-        
-        {% for cliente in clientes %}
+    <div class="login-form" style="width: 25rem;">
 
-        <div class="login-form" style="width: 18rem;">
-            
-            <div class="card-body">
-                
-                <h5 class="card-title">Nome: {{ cliente.nome }}</h5>
-                <p class="card-text">Idade: {{ cliente.idade }} anos</p>
-                <p class="card-text">CPF: {{ cliente.cpf }}</p>
-                <p class="card-text">Cidade: {{ cliente.cidade }}</p>
-                <p class="card-text">CEP: {{ cliente.cep }}</p>
-                <p class="card-text">Email: {{ user.email }}</p>
-                <p class="card-text">ID: {{ cliente.id }}</p>
-                <p class="card-text">USERID: {{ user.id }}</p>
-                
-                <a href="#" class="btn btn-primary">Editar</a>
-            </div>
-
-        </div>
-
+        {% for perfil in form %}
+            {{ field.error }}
         {% endfor %}
-
+        <form method="post">
+                <div class="avatar">
+                        <img src="{% static 'img/avatar.png' %}" alt="Avatar">
+                </div>
+            {% csrf_token %}
+            {% for field in form %}<p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% if field.help_text %}
+                  <small style="color: grey">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                  <p style="color: red">{{ error }}</p>
+                {% endfor %}
+              </p>
+            {% endfor %}
+        </form>
+                
+        <button type="submit" class="save btn btn-default">Save</button>
+        <button type="reset" class="save btn btn-default">Limpar</button>
     </div>
 
-</ul>
-
+</div>
 
 {% endblock %}

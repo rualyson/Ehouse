@@ -3,16 +3,23 @@
 {% load static %}
 
 {% block content %}
+<br>
+   
+<div class="row">
 
-<div class="container">
-    <form method="POST" class="login-form">
+    <div class="login-form" style="width: 18rem;">
 
-    	{% csrf_token %}
-        {{ form.as_p }}
-        
-        <br>
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+        {% for perfil in form %}
+            {{ field.error }}
+        {% endfor %}
+        <form action="meucadastro.html" method="post">
+            {% csrf_token %}
+            {{ form.as_ul }}
+        </form>
+                
+        <center><a href="#" class="btn btn-primary">Editar</a></center>
+    </div>
+
 </div>
 
 {% endblock %}

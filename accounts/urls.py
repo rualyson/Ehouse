@@ -14,6 +14,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name = 'usuarios/login.html', authentication_form = LoginForm), name='login'),
     path('cadastro_cliente/', views.cadastro_cliente, name='cadastro_cliente'),
     path('meucadastro/', views.meucadastro, name='meucadastro'),
-    path('editarcadastro/<int:id>/', views.editarcadastro, name="editarcadastro"),
+    path('editarcadastro/', views.editarcadastro, name="editarcadastro"),
    
 ]

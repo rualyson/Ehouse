@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from accounts.forms import RegisterForm
 from django.contrib.auth.forms import UserCreationForm
-from accounts.forms import CadastroCliente
-from .models import Cliente
+from accounts.forms import ProfileForm
+from .models import Profile
 
 #Create your views here
 def cadastro(request):
@@ -24,8 +24,7 @@ def cadastro(request):
 
 def cadastro_cliente(request):
     template_name = 'usuarios/cadastro_cliente.html'
-    form = CadastroCliente(request.POST or None)
-
+    form = ProfileForm(request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('/')
@@ -33,15 +32,33 @@ def cadastro_cliente(request):
     return render(request, template_name, {'form': form})
 
 def meucadastro(request):
-    context = {
-              'clientes': Cliente.objects.all() }
-    return render(request,'usuarios/meucadastro.html', context)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        user = request.user
+        profile = user.profile
+        form = ProfileForm(instance = profile)
+    args = {}
+    # args.update(csrf(request))
 
-def editarcadastro(request, id):
-    cliente = Cliente.objects.get(id=id)
-    form = CadastroCliente(request.POST or None, instance=cliente)
-    if form.is_valid():
-        form.save()
-        return redirect('/meucadastro/')    
-    redirect (request, '/usuarios/editarcadastro.html', {'form':form})
+    args['form'] = form
+    return render_to_response('usuarios/meucadastro.html', args)
 
+def editarcadastro(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('/meucadastro/')
+    else:
+        user = request.user
+        profile = user.profile
+        form = ProfileForm(instance = profile)
+    args = {}
+    # args.update(csrf(request))
+
+    args['form'] = form
+    return render_to_response('usuarios/meucadastro.html', args)

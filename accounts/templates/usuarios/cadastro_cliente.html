@@ -19,9 +19,7 @@
       <form method="POST">
         <h2 class="text-center">Complete seu cadastro:</h2>
         
-        {% csrf_token %} 
-        Username:
-        {{ user.username }}<br>
+        {% csrf_token %}     
         Nome:<br>
         {{ form.nome }}<br>
         Idade:<br>
@@ -40,7 +38,7 @@
     </div>
     {% else %}
         <center>
-            Você precisa se cadastrar para ter acesso a essa página!
+            <br>Você precisa se cadastrar para ter acesso a essa página!
         </center>    
     {% endif %}
 
