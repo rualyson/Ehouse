@@ -13,9 +13,7 @@
             {{ field.error }}
         {% endfor %}
         <form method="post">
-                <div class="avatar">
-                        <img src="{% static 'img/avatar.png' %}" alt="Avatar">
-                </div>
+               
             {% csrf_token %}
             {% for field in form %}<p>
                 {{ field.label_tag }}<br>

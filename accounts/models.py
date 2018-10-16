@@ -14,17 +14,14 @@ class Profile(models.Model):
     cidade = models.CharField('Cidade:', max_length=150)
     bio = models.TextField(blank=True)
 
-    User.profile = property(lambda u: Profile.objects.get_or_create(user = u)[0])
-
     def __str__(self):
         return self.nome
 
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
 
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Profile.objects.created(user=instance)
-
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.profile.save()
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()

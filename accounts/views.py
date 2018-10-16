@@ -36,7 +36,7 @@ def meucadastro(request):
         form = ProfileForm(request.POST, instance=request.user.profile)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('home')
     else:
         user = request.user
         profile = user.profile
