@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        <form method="POST" action="buscar/">
+            {% csrf_token %}
+            <label>informe seu cep e encontre uma casa mais proximo de você :</label>
+            <input class="form-control" type="text" name="cep" value="" placeholder="Informe seu CEP">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </form>
+        <br>
+        <ul class="list-group">
+            {% for imovel in imoveis %}
+            <li class="list-group-item">
+                <h4>Anúncio: {{imovel.titulo}}</h4>
+                <br>
+                <div class="media">
+                    <img class="mr-3" src="https://www.plantapronta.com.br/projetos/115/01.jpg" height="180" width="190">
+                    <br>
+
+                <div class="media-body">
+                <b>Cidade:</b> {{imovel.cidade}}
+                <br>
+                <b>Cep:</b> {{imovel.cep}}
+                <br>
+                <b>Descrição: </b>{{imovel.descricao}}
+                <br>
+                <p>
+                        <br>
+                    Telefone: {{imovel.telefone}}
+                        <br>
+                    Email: {{imovel.email}}</b>
+                </p>
+                <b>Valor: R$ {{imovel.preco}}</b>
+                <br>
+                Adicionado dia: {{imovel.data_cadastramento}}
+                <br>
+                <a href="{%url 'update_produto' imovel.id %}" class="btn btn-primary">Editar</a>
+                <a href="{%url 'product_delete' imovel.id %}" class="btn btn-danger">Deletar</a>
+                <a href="{%url 'detalhes_anuncio' imovel.id %}" class="btn btn-info" >Detalhes</a><br>
+
+                </div>
+                </div>
+            </li>
+            {% endfor%}
+        </ul>
+{% endblock %}

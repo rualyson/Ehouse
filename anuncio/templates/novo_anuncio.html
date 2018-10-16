@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+        <div class="login-form">
+            <form method="post">
+                <h2 class="text-center">Novo anúncio</h2>
+    {% csrf_token%}
+        <center>
+            <table>
+                <tr>
+                    <td>Valor:</td>
+                    <td>{{form.valor}}</td>            
+                </tr>
+                <tr>
+                    <td>Cidade:</td>
+                    <td>{{form.cidade}}</td>            
+                </tr>
+                <tr>
+                    <td>CEP:</td>
+                    <td>{{form.cep}}</td>            
+                </tr>
+                <tr>
+                    <td>Descrição:</td>
+                    <td>{{form.descricao}}</td>            
+                </tr>                
+                <tr>
+                    <td>Contato:</td>
+                    <td>{{form.contato}}</td>            
+                </tr>
+                <tr>
+                    <td>Imagem:</td>
+                    <td>{{form.foto}}</td>            
+                </tr>
+            </table>            
+            <button type="submit">Salvar</button>
+            <button type="reset"><a href="{% url 'meus_anuncios' %}">Cancelar</a></button>
+
+        </center>
+    </form>
+{% endblock %}
+

@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Meus Anúncios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <ul>
+        {% for anuncios in anuncios %}
+            <li><a href="{% url 'meus_anuncios' anuncios.id %}"> {{ anuncio.cidade }} </a></li>
+        
+        {% empty %}
+            Nenhum anúncio cadastrado!
+
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
+{% endblock %}

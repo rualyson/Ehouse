@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br>
+<h4>Imoveis encontrados para este ou proximo a este CEP:</h4>
+<br>
+<ul class="list-group">
+            {% csrf_token %}
+            {% for imovel in imoveis %}
+            <li class="list-group-item">
+                <h4>Anúncio: {{imovel.titulo}}</h4>
+                <br>
+                <div class="media">
+                    <img class="mr-3" src="https://www.plantapronta.com.br/projetos/115/01.jpg" height="180" width="190">
+                    <br>
+
+                <div class="media-body">
+                <b>Rua:</b> {{imovel.rua}}
+                <br>
+                <b>Número: </b>{{imovel.numero}}
+                <br>
+                Bairro: {{imovel.bairro}}
+                <br>
+                <b>Descrição: </b>{{imovel.descricao}}
+                <br>
+                <b>Cep:</b> {{imovel.cep}}
+                <br>
+                <p>
+                    <b>Entre em contato:
+                        <br>
+                    Telefone: {{imovel.telefone}}
+                        <br>
+                    Email: {{imovel.email}}</b>
+                </p>
+                <b>Valor: R$ {{imovel.preco}}</b>
+                <br>
+                Adicionado dia: {{imovel.data_cadastramento}}
+                <br>
+                <a href="{%url 'update_produto' imovel.id %}" class="btn btn-primary">Editar</a>
+                <a href="{%url 'product_delete' imovel.id %}" class="btn btn-danger">Deletar</a>
+                <a href="{%url 'detalhes_anuncio' imovel.id %}" class="btn btn-info" >Detalhes</a><br>
+
+                </div>
+                </div>
+            </li>
+            {% endfor%}
+        </ul>
+        <br>
+    <a class="btn btn-primary" href="/">Voltar</a>    
+
+{% endblock %}
