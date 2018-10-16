@@ -2,7 +2,58 @@
 
 {% block content %}
 {% load static %}
+  
+<div class="modal fade" id="centralModalDanger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Atenção!!!</p>
+    
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
 
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <p>O aluguel deste imóvel foi requisitado com sucesso, em breve o proprietário entrará em contato.</p>
+                    
+                </div>
+            </div>
+    
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contatoModal">Contato</button>
+                <a href="/catalogo/" class="btn btn-info" >Voltar</a><br>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="contatoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Contato do proprietário</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <br>
+                Telefone: {{imovel.telefone}}
+                    <br>
+                Email: {{imovel.email}}</b>
+            </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      
 <div class="login-form">
         <form method="POST">
             {% csrf_token %}
@@ -32,11 +83,15 @@
                 <br>
             </div>
             
-            <a href="#" class="btn btn-primary">Alugar</a>
-            <a href="#" class="btn btn-danger">Contato</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contatoModal">Contato</button>
             <a href="/" class="btn btn-info" >Voltar</a><br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centralModalDanger">Alugar</button>
+
 
             
         </form>
     </div>
+    </body>
+    </html>
+
 {% endblock %}
