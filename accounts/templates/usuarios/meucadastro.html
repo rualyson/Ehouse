@@ -13,23 +13,21 @@
             {{ field.error }}
         {% endfor %}
         <form method="post">
+
+            <center><h2>Meu Cadastro</h2></center>
                
             {% csrf_token %}
-            {% for field in form %}<p>
-                {{ field.label_tag }}<br>
-                {{ field }}
-                {% if field.help_text %}
-                  <small style="color: grey">{{ field.help_text }}</small>
-                {% endif %}
-                {% for error in field.errors %}
-                  <p style="color: red">{{ error }}</p>
-                {% endfor %}
-              </p>
-            {% endfor %}
+            {{ profile_form.as_p }}
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+                <a href="{% url 'editarcadastro' %}" class="btn btn-light">Usário</a>
+                <a href="{% url 'home' %}" class="btn btn-danger">Cancelar</a>
+            </div>
+
         </form>
                 
-        <button type="submit" class="save btn btn-default">Save</button>
-        <button type="reset" class="save btn btn-default">Limpar</button>
+         
     </div>
 
 </div>

@@ -4,22 +4,32 @@
 
 {% block content %}
 <br>
+
+{% if is_authenticated %}
    
 <div class="row">
 
-    <div class="login-form" style="width: 18rem;">
+    <div class="login-form" style="width: 25rem;">
 
         {% for perfil in form %}
             {{ field.error }}
         {% endfor %}
-        <form action="meucadastro.html" method="post">
+        <form method="post">
+
+            <center><h2>Usuário</h2></center>
+               
             {% csrf_token %}
-            {{ form.as_ul }}
+            {{ form.as_p}}
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
+            </div>
+
         </form>
                 
-        <center><a href="#" class="btn btn-primary">Editar</a></center>
+         
     </div>
 
 </div>
-
+{% endif %}
 {% endblock %}

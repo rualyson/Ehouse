@@ -13,7 +13,6 @@
     <title>Document</title>
 </head>
 <body>
-    {% if user.is_authenticated %}
 
     <div class="login-form">
         {% for perfil in form %}
@@ -42,12 +41,6 @@
         </div>
         </form>        
     </div>
-    {% else %}
-        <center>
-            <br>Você precisa se cadastrar para ter acesso a essa página!
-        </center>    
-    {% endif %}
-
          
 </body>
 </html>

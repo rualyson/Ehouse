@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from accounts.forms import RegisterForm
 from django.contrib.auth.forms import UserCreationForm
 from accounts.forms import ProfileForm
 from .models import Profile
+from django.db import transaction
+
 
 #Create your views here
 def cadastro(request):
@@ -17,48 +20,54 @@ def cadastro(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('cadastro_cliente')
+            return redirect('home')
     else:
         form = RegisterForm()
     return render(request, template_name, {'form': form})
 
+
 def cadastro_cliente(request):
     template_name = 'usuarios/cadastro_cliente.html'
-    form = ProfileForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('/')
-    
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('cadastro')
+    else:
+        form = ProfileForm()
     return render(request, template_name, {'form': form})
 
+@login_required
+@transaction.atomic
 def meucadastro(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=request.user.profile)
-        if form.is_valid():
-            form.save()
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, ('Seu perfil foi atualizado!'))
             return redirect('home')
+        else:
+            messages.error(request, ('Por favor, preencha os dados corretamente!'))
     else:
-        user = request.user
-        profile = user.profile
-        form = ProfileForm(instance = profile)
-    args = {}
-    # args.update(csrf(request))
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'usuarios/meucadastro.html', {
+        'profile_form': profile_form
+    })
+    
 
-    args['form'] = form
-    return render_to_response('usuarios/meucadastro.html', args)
-
+@login_required
+@transaction.atomic
 def editarcadastro(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=request.user.profile)
+        form = UserCreationForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('/meucadastro/')
+            messages.success(request, ('Seu perfil foi atualizado!'))
+            return redirect('home')
+        else:
+            messages.error(request, ('Por favor, preencha os dados corretamente!'))
     else:
-        user = request.user
-        profile = user.profile
-        form = ProfileForm(instance = profile)
-    args = {}
-    # args.update(csrf(request))
-
-    args['form'] = form
-    return render_to_response('usuarios/meucadastro.html', args)
+        form = UserCreationForm(instance=request.user)
+    return render(request, 'usuarios/editarcadastro.html', {
+        'form': form
+    })
