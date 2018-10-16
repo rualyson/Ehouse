@@ -67,3 +67,4 @@ class ProfileForm (forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['nome', 'idade', 'cpf', 'cidade', 'cep', 'bio']
+        
