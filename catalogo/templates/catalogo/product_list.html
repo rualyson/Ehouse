@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load pagination %}
 {% load static %}
 {% block content %}
         <form method="POST" action="buscar/">
@@ -14,28 +13,18 @@
             <li class="list-group-item">
                 <h4>Anúncio: {{imovel.titulo}}</h4>
                 <br>
-
                 <div class="media">
-                    {% if imovel.imagem %}
-                         <img src="{{ imovel.imagem.url }}" alt=""  height="180" width="190"/>
-                   {% else %}
-                           <img class="mr-3" src="https://www.plantapronta.com.br/projetos/115/01.jpg" height="180" width="190">
-                    {% endif %}
+                    <img class="mr-3" src="https://www.plantapronta.com.br/projetos/115/01.jpg" height="180" width="190">
                     <br>
 
                 <div class="media-body">
-                <b>Rua:</b> {{imovel.rua}}
-                <br>
-                <b>Número: </b>{{imovel.numero}}
-                <br>
-                Bairro: {{imovel.bairro}}
-                <br>
-                <b>Descrição: </b>{{imovel.descricao}}
+                <b>Cidade:</b> {{imovel.cidade}}
                 <br>
                 <b>Cep:</b> {{imovel.cep}}
                 <br>
+                <b>Descrição: </b>{{imovel.descricao}}
+                <br>
                 <p>
-                    <b>Entre em contato:
                         <br>
                     Telefone: {{imovel.telefone}}
                         <br>
@@ -53,6 +42,5 @@
                 </div>
             </li>
             {% endfor%}
-            </ul>
-{% pagination request paginator page_obj %}
+        </ul>
 {% endblock %}
