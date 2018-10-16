@@ -5,14 +5,26 @@ from .forms import ImovelForm
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 
+from watson import search as watson
+from django.db import models
+
 
 class ImovelListView(generic.ListView):
 
     queryset = Imovel.objects.all()
-    model = Imovel
+
     template_name = 'catalogo/product_list.html'
     context_object_name = 'imoveis'
-    paginate_by = 2
+    paginate_by = 1
+
+    def get_queryset(self):
+        queryset = Imovel.objects.all()
+        q = self.request.GET.get('q', '')
+        if q:
+            queryset = watson.filter(queryset, q)
+        return queryset
+
+
 
 product_list = ImovelListView.as_view()
 
