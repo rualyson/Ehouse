@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'anuncio',
     'catalogo',
     'widget_tweaks',
+    'watson',
 
 ]
 

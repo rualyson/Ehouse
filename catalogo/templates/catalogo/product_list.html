@@ -20,7 +20,7 @@
                          <img src="{{ imovel.imagem.url }}" alt=""  height="180" width="190"/>
                    {% else %}
                            <img class="mr-3" src="https://www.plantapronta.com.br/projetos/115/01.jpg" height="180" width="190">
-                    {% endif %}
+                   {% endif %}
                     <br>
 
                 <div class="media-body">
@@ -54,5 +54,9 @@
             </li>
             {% endfor%}
             </ul>
-{% pagination request paginator page_obj %}
+
+<button type="button" class="btn btn-info"> {% pagination request paginator page_obj %} </button>
+
+
+
 {% endblock %}
