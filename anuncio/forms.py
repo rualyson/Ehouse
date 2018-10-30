@@ -5,4 +5,4 @@ from django.forms import ModelForm
 class AnuncioForm(ModelForm):
     class Meta:
         model = Anuncio
-        fields = ['valor', 'cidade', 'cep', 'descricao', 'telefone','foto']
+        fields = ['valor', 'cidade', 'cep', 'descricao', 'telefone','imagem']

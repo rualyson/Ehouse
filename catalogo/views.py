@@ -4,17 +4,39 @@ from .forms import *
 from .models import *
 from .forms import ImovelForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from watson import search as watson
+from django.views import generic
+
+
+
+
+class ImovelListView(generic.ListView):
+
+
+    model = Imovel
+    template_name = 'catalogo/product_list.html'
+    context_object_name = 'imoveis'
+    paginate_by = 4
+
+    def get_queryset(self):
+        queryset = Imovel.objects.all()
+        q = self.request.GET.get('q', '')
+        if q:
+          queryset = watson.filter(queryset, q)
+        return queryset
+
+
+product_list = ImovelListView.as_view()
+
+
 
 
 @login_required(login_url="/accounts/login")
 def categorias(request):
        return render(request, 'base.html')
 
-@login_required(login_url="/accounts/login")
-def product_list(request):
-       context = {
-              'imoveis': Imovel.objects.all()}
-       return render(request, 'catalogo/product_list.html', context)
+
 
 @login_required(login_url="/accounts/login")
 def product_new(request):
@@ -22,6 +44,7 @@ def product_new(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            messages.success(request, "Anúncio cadastrado com sucesso")
             return redirect('product_list')
     return render(request, 'catalogo/novo_anuncio.html', {'form': form})
 

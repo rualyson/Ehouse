@@ -14,7 +14,7 @@
                 <h4>Anúncio: {{imovel.titulo}}</h4>
                 <br>
                 <div class="media">
-                    <img class="mr-3" src="https://www.plantapronta.com.br/projetos/115/01.jpg" height="180" width="190">
+                    <img class="mr-3" src="{{imovel.imagem.url}}" height="180" width="190">
                     <br>
 
                 <div class="media-body">
@@ -41,6 +41,22 @@
                 </div>
                 </div>
             </li>
+            </ul>
             {% endfor%}
-        </ul>
+
+     <div class="row">
+                <div class="btn btn">
+                    <nav>
+                        <ul class="pagination">
+
+                            {% for page in paginator.page_range %}
+                         <button type="button" class="btn btn-outline-primary"> <li><a href="?page={{ page }}">{{ page }}</a></li>
+                         </button>
+
+                            {% endfor%}
+                        </ul>
+                        </nav>
+                    </div>
+                </div>
+
 {% endblock %}
