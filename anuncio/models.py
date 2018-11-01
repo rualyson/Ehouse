@@ -8,7 +8,7 @@ class Anuncio(models.Model):
     cep = models.CharField (max_length = 200)
     descricao = models.TextField ()
     telefone = models.CharField (max_length = 200)
-    foto = models.ImageField (upload_to='fotos_anuncios')
+    imagem = models.ImageField (upload_to='fotos_anuncios')
 
     def __str__(self):
         return self.valor, self.cidade, self.cep, self.descricao, self.contato,

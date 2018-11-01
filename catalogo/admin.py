@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Product, Category, Imovel
+from .models import Product, Category, Imovel, Comentario
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -29,3 +29,4 @@ class ImovelAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Imovel,ImovelAdmin)
+admin.site.register(Comentario)

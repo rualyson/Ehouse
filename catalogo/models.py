@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 
@@ -39,7 +40,7 @@ class Imovel(models.Model):
     categoria = models.ForeignKey(Category, related_name='imoveis', on_delete='models.CASCADE')
     titulo = models.CharField('Título do anúncio', max_length=100, null=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
-    imagem = models.ImageField(upload_to='catalogo/media/imagens',  default='imagens/no-image.png', verbose_name='Imagem')
+    imagem = models.ImageField(upload_to='media/', verbose_name='Imagem')
     descricao = models.TextField(blank=True)
     dono = models.TextField(blank=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2, db_index=True)
@@ -75,4 +76,10 @@ class Imovel(models.Model):
     def __str__(self):
         return self.titulo
 
-    
+
+class Comentario(models.Model):
+
+    comentario = models.CharField(max_length=1000)
+    user = models.ForeignKey(User, on_delete=True)
+    imovel = models.ForeignKey(Imovel, on_delete=True)
+    data = models.DateTimeField(auto_now_add=True)

@@ -20,3 +20,6 @@ class ImovelForm(forms.ModelForm):
             'disponivel',
             'descricao'
         )
+
+class Form_Comentario(forms.Form):
+    comentario = forms.CharField(max_length=1000, widget=forms.Textarea())

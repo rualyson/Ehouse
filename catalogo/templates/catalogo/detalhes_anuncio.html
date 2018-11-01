@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
 {% load static %}
 
-<div class="login-form">
+<div class="login-form text-center" style="width: 40%">
         <form method="POST">
             {% csrf_token %}
-        
-            <h2 class="text-center">Detalhes do anúncio!</h2>   
+
+            <h2 class="text-center">Detalhes do anúncio!</h2>
             <div class="form-group">
-                
+
                 <img class="mr-3" src="https://www.plantapronta.com.br/projetos/115/01.jpg" height="180" width="190">
                 <br>
                 <b>Anúncio:</b> {{imovel.titulo}}
@@ -31,12 +32,44 @@
                 <b>Preço:</b> {{imovel.preco}}
                 <br>
             </div>
-            
+
             <a href="#" class="btn btn-primary">Alugar</a>
             <a href="#" class="btn btn-danger">Contato</a>
             <a href="/" class="btn btn-info" >Voltar</a><br>
-
-            
         </form>
+</div>
+    <div class="container">
+        {% for comentario in comentarios %}
+            <div class="card">
+              <div class="card-header">
+            {{ comentario.user.username }} {{ comentario.data }}
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p>{{ comentario.comentario }}</p>
+                </blockquote>
+              </div>
+            </div>
+            <br>
+        {% endfor %}
+
+        <br>
+
+    <form action="{% url 'adicionar_comentario' imovel.id %}" method="post">
+        {% csrf_token %}
+            <div class="card">
+              <div class="card-header">
+                  Adicione seu comentário abaixo
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  {{ form_comentario.comentario | add_class:"form-control" |attr:"placeholder:Ótimo imovel!" |attr:"rows:3" |attr:"style:width:800"}}
+                </blockquote>
+                  <br>
+                  <button class="btn btn-dark" type="submit">Adicionar</button>
+              </div>
+            </div>
+            <br>
+    </form>
     </div>
 {% endblock %}
