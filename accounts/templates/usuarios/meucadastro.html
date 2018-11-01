@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<br>
+   
+<div class="row">
+
+    <div class="login-form" style="width: 25rem;">
+
+        {% for perfil in form %}
+            {{ field.error }}
+        {% endfor %}
+        <form method="post">
+
+            <center><h2>Perfil</h2></center>
+               
+            {% csrf_token %}
+            {{ profile_form.as_p }}
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+                <a href="{% url 'editarcadastro' %}" class="btn btn-light">Usário</a>
+                <a href="{% url 'home' %}" class="btn btn-danger">Cancelar</a>
+            </div>
+
+        </form>
+                
+         
+    </div>
+
+</div>
+
+{% endblock %}

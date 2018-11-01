@@ -3,27 +3,72 @@
 {% load widget_tweaks %}
 
 {% block content %}
-  <h2>Cadastro de Anúncios!</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
 
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-lg-3">
+
+      <h4 class="my-4">Cadastro de anúncios:</h4>
+      <div class="list-group">
+        <a href="#" class="list-group-item">Minha Conta</a>
+        <a href="/accounts/logout/" class="list-group-item">Sair</a>
+      </div>
+
+    </div>
+    <!-- /.col-lg-3 -->
+
+
+  <form method="post" enctype="multipart/form-data">
+    <h2>Cadastro de anúncios!</h2>
+    {% csrf_token %}
+  
     {% for hidden in form.hidden_fields %}
       {{ hidden }}
     {% endfor %}
 
-    {% for field in form.visible_fields %}
-      <div class="form-group">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field|add_class:'form-control' }}
-        {% for error in field.errors %}
+    {% for field in form.visible_fields %} 
+    
+    <br>
+    <br>
+    <div class="form-control-sm">
+      <div class="login-form" style="height: 3rem;">
+        <label for="{{ field.id_for_label }}"><br>{{ field.label }}</label>
+        <br>{{ field|add_class:'form-control' }}
+        <!-- {% for error in field.errors %}
           <span class="help-block">{{ error }}</span>
-        {% endfor %}
+        {% endfor %} -->
       </div>
+    </div>
+  
     {% endfor %}
 
-    <input type="submit" value="Cadastrar" class="btn btn-success">
-    <input type="reset" value="Limpar" class="btn btn-warning">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <center>
+      <input type="submit" value="Cadastrar" class="btn btn-success">
+      <input type="reset" value="Limpar" class="btn btn-warning">
+    </center>
   </form>
+
+    
+
 
   
 {% endblock %}

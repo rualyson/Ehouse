@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<br>
+
+{% if is_authenticated %}
+   
+<div class="row">
+
+    <div class="login-form" style="width: 25rem;">
+
+        {% for perfil in form %}
+            {{ field.error }}
+        {% endfor %}
+        <form method="post">
+
+            <center><h2>Usuário</h2></center>
+               
+            {% csrf_token %}
+            {{ form.as_p}}
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
+            </div>
+
+        </form>
+                
+         
+    </div>
+
+</div>
+{% endif %}
+{% endblock %}

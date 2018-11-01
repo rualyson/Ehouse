@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms.widgets import PasswordInput, TextInput
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .models import Profile
 
 #Create your forms here
 class LoginForm(AuthenticationForm):
@@ -61,3 +62,8 @@ class EditAccountsForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
+
+class ProfileForm (forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['nome', 'idade', 'cpf', 'cidade', 'cep', 'bio']

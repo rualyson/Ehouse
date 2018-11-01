@@ -32,7 +32,7 @@
           <h4 class="my-4">Bem-vindo(a), {{request.user}}!</h4>
           <div class="list-group">
             <a href="{% url 'product_list' %}" class="list-group-item">Anúncios</a>
-            <a href="#" class="list-group-item">Minha Conta</a>
+            <a href="{% url 'minhaconta' %}" class="list-group-item">Minha Conta</a>
             <a href="/accounts/logout/" class="list-group-item">Sair</a>
           </div>
 
@@ -184,12 +184,16 @@
     
     {% else %}
 
+    
+
     <div class="container">
       <header class="jumbotron my-4">
         <h1 class="display-3">EHouse</h1>
         <p class="lead">O melhor lugar para anunciar o seu imóvel!</p>
         <a href="{% url 'cadastro' %}" class="btn btn-primary btn-lg">Venha conhecer!</a>
       </header>
+    <center>
+
       <div class="row text-center">
 
         <div class="col-lg-3 col-md-6 mb-4">
@@ -247,6 +251,7 @@
       </div>
 
     </div>
+  </center>
     <footer class="py-5 bg-dark">
         <div class="container">
           <p class="m-0 text-center text-white">Copyright &copy; Ehouse - Projeto Avançado I</p>
